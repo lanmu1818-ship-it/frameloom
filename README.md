@@ -1,42 +1,42 @@
-# FrameLoom · 帧织
+# FrameLoom
 
 [![Frontend checks](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml/badge.svg)](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml)
 
-[在线演示](https://ai.vip98k.com/demo-home) · [项目官网](https://ai.vip98k.com/) · [App 界面预览](#app-界面预览)
+[Live Demo](https://ai.vip98k.com/demo-home) · [Website](https://ai.vip98k.com/) · [App Preview](#app-preview)
 
-**FrameLoom（帧织）** 是面向图片、视频和节点工作流的 AI 设计工作台。项目名结合 Frame（画面）与 Loom（织造），表达将素材和创作流程编排为作品。
+**FrameLoom** is an open-source AI design workspace frontend for image and video canvases and node-based workflows. Its name combines *Frame* and *Loom*: weaving creative assets and workflows into finished work.
 
-从现有 App 中提取的独立前端源码，基于 React、TypeScript、Vite 和 Tailwind CSS。包含登录界面、设计工作台、图片/视频画布、节点编辑、生成任务面板、团队界面，以及可选的桌面桥接客户端。
+Built with **React, TypeScript, Vite, and Tailwind CSS**, this standalone frontend was extracted from an existing desktop app. It includes authentication screens, a creative workspace, image and video canvases, node editing, generation task panels, team interfaces, and an optional desktop bridge client.
 
-**本仓库是前端，不包含可独立提供 AI 服务的后端。** 登录、上传、生成、团队权限、计费和项目保存需要自行实现或接入兼容 API。未配置后端时，启动后显示连接设置页，不会默认连接原项目的商业服务。
+**A compatible backend is required.** This repository contains the frontend; authentication, uploads, AI generation, team permissions, billing, and project storage must be provided by your own backend or a compatible API. Without a configured backend, the app opens a connection setup screen. It does not connect to the original commercial service by default.
 
-## App 界面预览
+## App Preview
 
-以下截图来自实际运行的桌面 App，拍摄于 2026-09-16，展示首页、画布工作台与生成参数面板。官网、在线演示和当前桌面发行版仍使用 **Astra Canvas** 名称；**FrameLoom · 帧织** 是本仓库独立开源前端的名称。线上服务及桌面发行版的功能、素材和后端配置可能与本仓库不同。
+These screenshots were captured from the running desktop app on September 16, 2026. The website, live demo, and current desktop release still use the **Astra Canvas** name; **FrameLoom** is the name of this independent open-source frontend. Features, assets, and backend configuration in the hosted service and desktop release may differ from this repository.
 
-### App 首页
+### Home
 
-创意输入、Agent 模式、快速开始与最近项目。
+Start with a creative prompt, use Agent mode, explore quick starts, and revisit recent projects.
 
-![App 首页：创意输入、快速开始与最近项目](docs/screenshots/app-home.jpg)
+![App home with creative input, quick starts, and recent projects](docs/screenshots/app-home.jpg)
 
-### 画布工作台
+### Canvas Workspace
 
-无限画布、选择与平移工具、Agent 对话及快捷创作入口。
+An infinite canvas with selection and pan tools, an Agent conversation panel, and creative shortcuts.
 
-![App 画布工作台与 Agent 对话面板](docs/screenshots/app-canvas.jpg)
+![App canvas workspace and Agent conversation panel](docs/screenshots/app-canvas.jpg)
 
-### 画布生成参数
+### Generation Settings
 
-在画布中设置图片质量、尺寸比例和生成数量。
+Adjust image quality, aspect ratio, resolution, and output count directly from the canvas.
 
-![App 画布中的图片生成参数面板](docs/screenshots/app-canvas-parameters.jpg)
+![Image generation settings in the app canvas](docs/screenshots/app-canvas-parameters.jpg)
 
-截图仅作界面展示，图中第三方素材和品牌的权利归原权利人；原始素材未作为 App 资源打包，详见 [第三方说明](THIRD_PARTY_NOTICES.md)。在线演示首页可以直接浏览，生成、资产和画布操作需要登录并受线上服务权限约束。
+Screenshots illustrate the interface. Third-party assets and brands shown retain their respective rights; the original media files are not bundled as app resources. See [Third-Party Notices](THIRD_PARTY_NOTICES.md). The demo home page is publicly accessible; generation, assets, and canvas operations require sign-in and are subject to the hosted service's permissions.
 
-## 快速开始
+## Quick Start
 
-需要 Node.js 20.19+（或 Node.js 22.12+）和 pnpm 9.12.3。
+Requires Node.js 20.19+ (or Node.js 22.12+) and pnpm 9.12.3.
 
 ```bash
 git clone https://github.com/lanmu1818-ship-it/frameloom.git
@@ -47,19 +47,19 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-打开终端显示的本地地址（默认 `http://localhost:5173`），填写自己的后端地址；或在首次启动前配置：
+Open the local URL printed in your terminal (default: `http://localhost:5173`) and enter your backend URL. Alternatively, configure it before starting the app:
 
 ```bash
 cp .env.example .env.local
-# 编辑 .env.local：VITE_API_BASE_URL=http://localhost:3000
+# Edit .env.local: VITE_API_BASE_URL=http://localhost:3000
 pnpm dev
 ```
 
-地址填后端根地址，不要附加 `/api`。远程部署使用 HTTPS。设置页保存的地址优先于构建配置；切换后端前可在浏览器开发者工具中清除本站点的 `yedir.apiBaseUrl` 等 `yedir.*` 配置项并刷新。
+Use the backend's root URL without an `/api` suffix. Use HTTPS for remote deployments. A URL saved in the setup screen takes precedence over build-time configuration. To switch backends, clear this site's `yedir.apiBaseUrl` and other `yedir.*` configuration entries in your browser's developer tools, then reload.
 
-`VITE_*` 配置会进入浏览器产物，是公开信息。不要填写数据库密码、模型供应商密钥、存储密钥或服务端签名密钥。
+`VITE_*` values are included in the browser bundle and are public. Never put database passwords, model provider keys, storage credentials, or server signing secrets in them.
 
-## 构建与检查
+## Build and Validate
 
 ```bash
 pnpm check:public
@@ -69,47 +69,49 @@ pnpm build
 pnpm preview
 ```
 
-产物位于 `dist/`。`index.html` 为完整工作台入口，`canvas.html` 为画布入口；后者需要兼容后端的已有会话。静态托管部署在域名根路径，工作台路由应回退至 `index.html`。若单独部署画布入口，将其作为该站点默认入口并让路由回退至它。请参阅 [部署说明](docs/deployment.md)。
+Build output is written to `dist/`. `index.html` is the full workspace entry; `canvas.html` is the canvas entry and requires an existing session with a compatible backend. Deploy static files at the domain root and route workspace requests back to `index.html`. For a canvas-only deployment, use the canvas entry as the site's default document and route fallback. See the [Deployment Guide](docs/deployment.md).
 
-## 源码结构
+## Source Structure
 
 ```text
-src/desktop/       浏览器入口、轻量路由适配、桌面桥接客户端
-src/components/    工作台、画布、节点、生成面板
-src/app-routes/    App 实际使用的页面组件
-src/client/        API 请求、上传、下载、会话辅助
-src/runtime/       公开运行配置、本地归档配置
-src/lib/           前端共享逻辑、模型能力和界面配置
-src/providers/     会话、主题、上传等 React Provider
-src/services/      画布服务客户端
-src/store/         客户端状态
-src/styles/        全局样式
-types/             公开数据类型
-public/            自绘占位图、中性图标和本地帮助页
+src/desktop/       Browser entry points, lightweight routing, desktop bridge client
+src/components/    Workspace, canvases, nodes, and generation panels
+src/app-routes/    App page components
+src/client/        API requests, uploads, downloads, and session helpers
+src/runtime/       Public runtime configuration and local archive settings
+src/lib/           Shared frontend logic, model capabilities, and UI configuration
+src/providers/     Session, theme, upload, and other React providers
+src/services/      Canvas service clients
+src/store/         Client state
+src/styles/        Global styles
+types/             Public data types
+public/            Original placeholder SVGs, neutral icons, and local help pages
 ```
 
-原项目中的 `next/link`、`next/navigation` 和 `next/dynamic` 使用本地适配组件；此版本不运行 Next.js 服务端，也不需要原仓库或它的 `node_modules`。
+Local adapters replace the original project's `next/link`, `next/navigation`, and `next/dynamic` imports. This version does not run a Next.js server and does not depend on the original repository or its `node_modules` directory.
 
-## 能力边界
+## Features and Backend Requirements
 
-| 功能 | 本仓库提供 | 需要接入 |
+| Feature | Included in this repository | Requires integration |
 | --- | --- | --- |
-| 工作台、画布、节点和参数面板 | React 界面与状态逻辑 | 项目数据接口 |
-| 登录、注册、第三方登录 | 前端流程 | 会话、邮件、Clerk 配置及回调服务 |
-| 图片/视频生成、编辑 | 请求与任务展示 | 模型网关、队列、鉴权和配额 |
-| 上传、下载和持久化 | 客户端 | 存储及签名 URL 服务 |
-| 团队管理 | 用户可见界面 | 服务端角色权限校验 |
-| 本地归档、自动更新 | 桥接调用接口 | Electron/Tauri 壳实现 |
+| Workspace, canvases, nodes, and settings panels | React UI and state logic | Project data APIs |
+| Sign-in, registration, and third-party authentication | Frontend flows | Sessions, email, Clerk configuration, and callback services |
+| Image/video generation and editing | Requests and task display | Model gateway, queues, authentication, and quotas |
+| Uploads, downloads, and persistence | Client implementations | Storage and signed URL services |
+| Team management | User-facing interfaces | Server-side role and permission checks |
+| Local archives and automatic updates | Bridge interfaces | Electron/Tauri shell implementation |
 
-前端构建不代表上述后端业务已经实现。App 运行资源中的演示照片、第三方视频/音频样例和原品牌图案已用自绘 SVG 占位图替换或留空；文档截图保留实际界面供预览。音视频演示 URL 留空，需要自行配置具有使用权的素材。
+A successful frontend build does not implement these backend services. Demo photos, third-party video/audio samples, and original branding in app resources have been replaced with original placeholder SVGs or left empty. Documentation screenshots retain the actual interface for preview. Audio and video demo URLs are empty; configure assets you have permission to use.
 
-## 文档
+## Documentation
 
-- [后端接入](docs/backend-integration.md) 与 [API 路径索引](docs/api-paths.md)
-- [开源清理记录](docs/open-source-cleanup.md)
-- [贡献指南](CONTRIBUTING.md)、[安全报告](SECURITY.md)
-- [第三方说明](THIRD_PARTY_NOTICES.md)
+The following supporting documents are currently available in Chinese:
 
-## 许可
+- [Backend Integration](docs/backend-integration.md) and [API Path Index](docs/api-paths.md)
+- [Open-Source Preparation Notes](docs/open-source-cleanup.md)
+- [Contributing](CONTRIBUTING.md) and [Security Policy](SECURITY.md)
+- [Third-Party Notices](THIRD_PARTY_NOTICES.md)
 
-沿用原项目的 Apache-2.0，完整文本见 [LICENSE](LICENSE)，保留的上游版权声明见 [NOTICE](NOTICE)。依赖各自适用其原有许可。项目和供应商名称的出现不表示合作或背书。
+## License
+
+This project retains the original project's Apache-2.0 license. See [LICENSE](LICENSE) for the full text and [NOTICE](NOTICE) for preserved upstream copyright notices. Dependencies retain their respective licenses. References to projects or providers do not imply affiliation or endorsement.
