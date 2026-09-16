@@ -1,0 +1,10 @@
+FrameLoom · 帧织
+
+Contains code derived from the original project, whose license notice states:
+Copyright 2024 Vercel, Inc.
+Licensed under the Apache License, Version 2.0.
+
+This distribution extracts the browser renderer, changes module paths and runtime
+configuration, removes private service defaults, and replaces demonstration media.
+Existing source notices remain applicable. Dependency licenses remain with their
+respective packages. Brand and service names do not imply endorsement.

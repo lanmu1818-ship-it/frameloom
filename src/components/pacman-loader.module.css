@@ -1,0 +1,59 @@
+/* Modified for standalone community distribution; see NOTICE. */
+.loader {
+  position: relative;
+  width: 112px;
+  height: 32px;
+  flex: none;
+}
+
+.pacman {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  width: 28px;
+  height: 28px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: currentColor;
+  clip-path: polygon(0 0, 100% 0, 100% 23%, 52% 50%, 100% 77%, 100% 100%, 0 100%);
+  animation: mouth 0.52s ease-in-out infinite;
+}
+
+.bean {
+  position: absolute;
+  top: 10px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: bean 1.08s linear infinite;
+}
+
+.bean:nth-child(2) { animation-delay: 0s; }
+.bean:nth-child(3) { animation-delay: -0.27s; }
+.bean:nth-child(4) { animation-delay: -0.54s; }
+.bean:nth-child(5) { animation-delay: -0.81s; }
+
+@keyframes mouth {
+  0%, 100% { clip-path: polygon(0 0, 100% 0, 100% 23%, 52% 50%, 100% 77%, 100% 100%, 0 100%); }
+  50% { clip-path: polygon(0 0, 100% 0, 100% 47%, 52% 50%, 100% 53%, 100% 100%, 0 100%); }
+}
+
+@keyframes bean {
+  0% { opacity: 0; transform: translateX(16px) scale(0.9); }
+  14%, 76% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(-50px) scale(0.9); }
+}
+
+.loader[data-paused] > span {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pacman, .bean { animation: none; }
+  .bean:nth-child(2) { left: 44px; }
+  .bean:nth-child(3) { left: 62px; }
+  .bean:nth-child(4) { left: 80px; }
+  .bean:nth-child(5) { left: 98px; }
+}

@@ -1,0 +1,1835 @@
+/* Modified for standalone community distribution; see NOTICE. */
+@import "tailwindcss";
+
+
+/* include utility classes in streamdown */
+@source '../../node_modules/streamdown/dist/index.js';
+
+/* custom variant for setting dark mode programmatically */
+@custom-variant dark (&:is(.dark, .dark *));
+
+/* include plugins */
+@plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
+
+/* define design tokens (light mode) */
+:root {
+  color-scheme: light;
+  --font-geist: "Astra JetBrains Mono", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", monospace;
+  --font-geist-mono: "Astra JetBrains Mono", "SFMono-Regular", "SF Mono", Menlo,
+    Monaco, Consolas, monospace;
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: hsl(240 5.9% 10%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: hsl(240 4.8% 95.9%);
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(240 4.8% 95.9%);
+  --accent-foreground: hsl(240 5.9% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: var(--brand-selection);
+  --chart-1: hsl(12 76% 61%);
+  --chart-2: hsl(173 58% 39%);
+  --chart-3: hsl(197 37% 24%);
+  --chart-4: hsl(43 74% 66%);
+  --chart-5: hsl(27 87% 67%);
+  --sidebar-background: hsl(0 0% 98%);
+  --sidebar-foreground: hsl(240 5.3% 26.1%);
+  --sidebar-primary: hsl(240 5.9% 10%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(240 4.8% 95.9%);
+  --sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --sidebar-border: hsl(220 13% 91%);
+  --sidebar-ring: var(--brand-selection);
+  /* border radius unit */
+  --radius: 0.5rem;
+  --sidebar: hsl(0 0% 98%);
+  --chat-user-bubble-bg: hsl(214 100% 50%);
+  --chat-user-bubble-foreground: hsl(0 0% 100%);
+  --chat-user-bubble-border: hsl(214 100% 46%);
+  --brand-accent: #e9ff38;
+  --brand-accent-rgb: 233 255 56;
+  --brand-accent-hover: #f1ff5f;
+  --brand-accent-foreground: #07090d;
+  --brand-accent-deep: #596400;
+  --brand-selection: var(--brand-accent-deep);
+  --app-icon-stroke: 1.9;
+  --ui-font-caption: 11px;
+  --ui-font-body: 12px;
+  --ui-font-subtitle: 14px;
+  --ui-font-title: 16px;
+  --ui-font-display: 20px;
+  --ui-line-caption: 16px;
+  --ui-line-body: 18px;
+  --ui-line-subtitle: 22px;
+  --ui-line-title: 24px;
+  --ui-line-display: 28px;
+  --ui-icon-sm: 14px;
+  --ui-icon-md: 16px;
+  --ui-control-sm: 28px;
+  --ui-control-md: 32px;
+  --ui-control-lg: 36px;
+  --ui-surface-radius: 8px;
+}
+
+/* define design tokens (dark mode) */
+.dark {
+  --brand-selection: var(--brand-accent);
+  color-scheme: dark;
+  --background: hsl(240 10% 3.9%);
+  --foreground: hsl(0 0% 98%);
+  --card: hsl(240 10% 3.9%);
+  --card-foreground: hsl(0 0% 98%);
+  --popover: hsl(240 10% 3.9%);
+  --popover-foreground: hsl(0 0% 98%);
+  --primary: hsl(0 0% 98%);
+  --primary-foreground: hsl(240 5.9% 10%);
+  --secondary: hsl(240 3.7% 15.9%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(240 3.7% 15.9%);
+  --muted-foreground: hsl(240 5% 64.9%);
+  --accent: hsl(240 3.7% 15.9%);
+  --accent-foreground: hsl(0 0% 98%);
+  --destructive: hsl(0 62.8% 30.6%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 3.7% 15.9%);
+  --input: hsl(240 3.7% 15.9%);
+  --ring: var(--brand-selection);
+  --chart-1: hsl(220 70% 50%);
+  --chart-2: hsl(160 60% 45%);
+  --chart-3: hsl(30 80% 55%);
+  --chart-4: hsl(280 65% 60%);
+  --chart-5: hsl(340 75% 55%);
+  --sidebar-background: hsl(240 5.9% 10%);
+  --sidebar-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-primary: hsl(224.3 76.3% 48%);
+  --sidebar-primary-foreground: hsl(0 0% 100%);
+  --sidebar-accent: hsl(240 3.7% 15.9%);
+  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
+  --sidebar-border: hsl(240 3.7% 15.9%);
+  --sidebar-ring: var(--brand-selection);
+  --sidebar: hsl(240 5.9% 10%);
+  --chat-user-bubble-bg: hsl(217 92% 58%);
+  --chat-user-bubble-foreground: hsl(0 0% 100%);
+  --chat-user-bubble-border: hsl(217 92% 66% / 0.42);
+}
+
+/* define theme */
+@theme {
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-toast-mobile: 600px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-background: var(--sidebar-background);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-hover: var(--brand-accent-hover);
+  --color-brand-accent-foreground: var(--brand-accent-foreground);
+  --color-brand-accent-deep: var(--brand-accent-deep);
+  --color-brand-selection: var(--brand-selection);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --text-xs: var(--ui-font-caption);
+  --text-xs--line-height: var(--ui-line-caption);
+  --text-sm: var(--ui-font-body);
+  --text-sm--line-height: var(--ui-line-body);
+  --text-base: var(--ui-font-subtitle);
+  --text-base--line-height: var(--ui-line-subtitle);
+  --text-lg: var(--ui-font-title);
+  --text-lg--line-height: var(--ui-line-title);
+  --text-xl: 18px;
+  --text-xl--line-height: 26px;
+  --text-2xl: var(--ui-font-display);
+  --text-2xl--line-height: var(--ui-line-display);
+  --text-3xl: 24px;
+  --text-3xl--line-height: 32px;
+  --text-4xl: 28px;
+  --text-4xl--line-height: 36px;
+  --text-5xl: 32px;
+  --text-5xl--line-height: 40px;
+  --text-6xl: 36px;
+  --text-6xl--line-height: 44px;
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/* utility classes */
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border, currentColor);
+  }
+
+  svg.lucide {
+    flex-shrink: 0;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: var(--app-icon-stroke);
+    vector-effect: non-scaling-stroke;
+  }
+
+  button svg.lucide,
+  [role="button"] svg.lucide {
+    pointer-events: none;
+    max-width: var(--ui-icon-md);
+    max-height: var(--ui-icon-md);
+  }
+
+  body {
+    font-size: var(--ui-font-body);
+    line-height: var(--ui-line-body);
+  }
+}
+
+@layer components {
+  [data-ui-surface="dialog"] {
+    font-size: var(--ui-font-body);
+    line-height: var(--ui-line-body);
+  }
+
+  [data-ui-surface="dialog"] [data-ui-role="title"] {
+    font-size: var(--ui-font-title) !important;
+    line-height: var(--ui-line-title) !important;
+    letter-spacing: 0 !important;
+  }
+
+  [data-ui-surface="dialog"] [data-ui-role="description"] {
+    font-size: var(--ui-font-body) !important;
+    line-height: var(--ui-line-body) !important;
+  }
+
+  [data-ui-surface="dialog"] :is(button, input, textarea, select, [role="combobox"], [role="menuitem"]) {
+    font-size: var(--ui-font-body);
+    line-height: var(--ui-line-body);
+  }
+
+  [data-ui-surface="dialog"] :is(h1, h2) {
+    font-size: var(--ui-font-title) !important;
+    line-height: var(--ui-line-title) !important;
+  }
+
+  [data-ui-surface="dialog"] :is(h3, h4) {
+    font-size: var(--ui-font-subtitle) !important;
+    line-height: var(--ui-line-subtitle) !important;
+  }
+
+  [data-ui-surface="dialog"] :is(
+    [class~="text-[20px]"],
+    [class~="text-[22px]"],
+    [class~="text-[24px]"],
+    [class~="text-[26px]"],
+    [class~="text-[28px]"],
+    [class~="text-[30px]"],
+    [class~="text-[32px]"]
+  ) {
+    font-size: var(--ui-font-title) !important;
+    line-height: var(--ui-line-title) !important;
+  }
+
+  [data-ui-surface="dialog"] :is(
+    [class~="text-[15px]"],
+    [class~="text-[16px]"],
+    [class~="text-[17px]"],
+    [class~="text-[18px]"]
+  ) {
+    font-size: var(--ui-font-subtitle) !important;
+    line-height: var(--ui-line-subtitle) !important;
+  }
+
+  [data-ui-surface="dialog"] svg.lucide {
+    max-width: var(--ui-icon-md);
+    max-height: var(--ui-icon-md);
+  }
+}
+
+@layer utilities {
+  @keyframes astra-upload-heartbeat {
+    0%,
+    100% {
+      transform: translateY(-4px) rotate(-4deg) scale(1);
+    }
+    42% {
+      transform: translateY(-5px) rotate(-4deg) scale(1.045);
+    }
+    68% {
+      transform: translateY(-3px) rotate(-4deg) scale(0.985);
+    }
+  }
+
+  @keyframes astra-upload-heartbeat-flat {
+    0%,
+    100% {
+      transform: translateY(-4px) rotate(0deg) scale(1);
+    }
+    42% {
+      transform: translateY(-5px) rotate(0deg) scale(1.045);
+    }
+    68% {
+      transform: translateY(-3px) rotate(0deg) scale(0.985);
+    }
+  }
+
+  .astra-upload-heartbeat:hover {
+    animation: astra-upload-heartbeat 920ms ease-in-out infinite;
+  }
+
+  @media (max-width: 1023px) {
+    .astra-upload-heartbeat:hover {
+      animation-name: astra-upload-heartbeat-flat;
+    }
+  }
+
+  @keyframes canvas-generated-pulse {
+    0% {
+      opacity: 0.9;
+      transform: scale(0.985);
+      box-shadow:
+        0 0 0 0 rgba(124, 156, 255, 0.3),
+        0 0 26px rgba(124, 156, 255, 0.2);
+    }
+    55% {
+      opacity: 0.35;
+      transform: scale(1.03);
+      box-shadow:
+        0 0 0 12px rgba(124, 156, 255, 0.02),
+        0 0 42px rgba(124, 156, 255, 0.1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.055);
+      box-shadow:
+        0 0 0 18px rgba(124, 156, 255, 0),
+        0 0 52px rgba(124, 156, 255, 0);
+    }
+  }
+
+  .agent-dark-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.18) rgba(255, 255, 255, 0.04);
+  }
+
+  .agent-dark-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .agent-dark-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+  }
+
+  .agent-dark-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 999px;
+  }
+
+  .agent-dark-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.26);
+    background-clip: padding-box;
+  }
+
+  .step {
+    counter-increment: step;
+  }
+
+  .step:before {
+    @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-white bg-zinc-100 text-center font-mono text-base font-medium text-zinc-700 -indent-px;
+    @apply ml-[-50px] mt-[-4px];
+    content: counter(step);
+  }
+
+  .pattern-grid-lg {
+    background-image: linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .canvas-jimeng-composer-shell {
+    container-type: inline-size;
+  }
+
+  .canvas-jimeng-composer-shell .canvas-jimeng-tool-button svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.9;
+  }
+
+  .canvas-jimeng-composer-shell .canvas-jimeng-tool-button .lucide-at-sign {
+    width: 18px;
+    height: 18px;
+  }
+
+  .canvas-jimeng-composer-shell .canvas-jimeng-mic-button svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 1.9;
+  }
+
+  .canvas-jimeng-composer-shell .canvas-jimeng-send-button svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2;
+  }
+
+  .canvas-jimeng-composer-shell .canvas-jimeng-upload-card svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @container (max-width: 620px) {
+    .canvas-jimeng-composer-shell {
+      min-height: 132px;
+      padding: 14px 14px 12px;
+      border-radius: 18px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-upload-card {
+      width: 42px;
+      height: 58px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-upload-card svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-placeholder-editor {
+      min-height: 54px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-bottom-row {
+      gap: 8px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-toolbar {
+      flex-wrap: nowrap;
+      gap: 6px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-tool-label {
+      display: none;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-tool-button {
+      width: 34px !important;
+      min-width: 34px !important;
+      height: 34px !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      border-radius: 8px !important;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-tool-button svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-model-avatar {
+      width: 18px !important;
+      height: 18px !important;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-agent-button {
+      width: 34px !important;
+      min-width: 34px !important;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-group {
+      gap: 8px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-mic-button {
+      width: 30px;
+      height: 30px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-mic-button svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-button {
+      width: 34px;
+      height: 34px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-button svg {
+      width: 17px;
+      height: 17px;
+    }
+  }
+
+  @container (max-width: 440px) {
+    .canvas-jimeng-composer-shell {
+      padding: 12px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-placeholder-editor {
+      font-size: 13px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-tool-button {
+      width: 32px !important;
+      min-width: 32px !important;
+      height: 32px !important;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-tool-button svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-model-avatar {
+      width: 18px !important;
+      height: 18px !important;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-group {
+      gap: 6px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-mic-button {
+      width: 28px;
+      height: 28px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-button {
+      width: 32px;
+      height: 32px;
+    }
+
+    .canvas-jimeng-composer-shell .canvas-jimeng-send-button svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+/* Hide Next.js development overlays so local UI screenshots match production chrome. */
+nextjs-portal {
+  display: none !important;
+}
+
+.admin-settings-surface {
+  --admin-settings-bg: #f8f9fa;
+  --admin-settings-panel: #ffffff;
+  --admin-settings-panel-raised: #ffffff;
+  --admin-settings-panel-muted: #f4f5f7;
+  --admin-settings-panel-hover: rgba(17, 24, 39, 0.045);
+  --admin-settings-border: #e8ebf0;
+  --admin-settings-border-soft: #edf0f4;
+  --admin-settings-text: #171a22;
+  --admin-settings-muted-text: #6f7785;
+  --admin-settings-faint-text: #9aa3af;
+  --admin-settings-control-bg: rgba(255, 255, 255, 0.92);
+  --admin-settings-control-hover: rgba(17, 24, 39, 0.045);
+  --admin-settings-popover-shadow: 0 16px 34px rgba(18, 24, 33, 0.12);
+  --admin-settings-panel-shadow: none;
+  --admin-settings-success-bg: rgb(var(--brand-accent-rgb) / 0.14);
+  --admin-settings-success-border: rgb(var(--brand-accent-rgb) / 0.34);
+  --admin-settings-success-text: var(--brand-accent-deep);
+  --admin-settings-warning-bg: rgba(245, 158, 11, 0.1);
+  --admin-settings-warning-border: rgba(245, 158, 11, 0.26);
+  --admin-settings-warning-text: #8a5600;
+  --admin-settings-danger-bg: rgba(239, 68, 68, 0.09);
+  --admin-settings-danger-border: rgba(239, 68, 68, 0.24);
+  --admin-settings-danger-text: #b42318;
+  --admin-settings-topbar-bg: rgba(255, 255, 255, 0.78);
+  --admin-settings-popover-bg: rgba(255, 255, 255, 0.98);
+  min-height: 100vh;
+  color-scheme: light;
+  position: relative;
+  isolation: isolate;
+  overflow-x: hidden;
+  background-color: var(--admin-settings-bg);
+  background-attachment: fixed;
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface :is(
+  [class~="text-[24px]"],
+  [class~="text-[25px]"],
+  [class~="text-[26px]"],
+  [class~="text-[28px]"],
+  [class~="text-[30px]"],
+  [class~="text-[32px]"]
+) {
+  font-size: var(--ui-font-display) !important;
+  line-height: var(--ui-line-display) !important;
+}
+
+.admin-settings-surface :is(
+  [class~="text-[20px]"],
+  [class~="text-[21px]"],
+  [class~="text-[22px]"]
+) {
+  font-size: 18px !important;
+  line-height: 26px !important;
+}
+
+.admin-settings-surface :is(
+  [class~="text-[15px]"],
+  [class~="text-[16px]"],
+  [class~="text-[17px]"],
+  [class~="text-[18px]"]
+) {
+  font-size: var(--ui-font-subtitle) !important;
+  line-height: var(--ui-line-subtitle) !important;
+}
+
+.admin-settings-surface [data-ui-control="button"],
+.admin-settings-surface [data-ui-control="input"],
+.admin-settings-surface [data-ui-control="select"],
+.admin-settings-surface [data-ui-control="tab"] {
+  height: var(--ui-control-md) !important;
+  min-height: var(--ui-control-md) !important;
+  font-size: var(--ui-font-body) !important;
+  line-height: var(--ui-line-body) !important;
+}
+
+.admin-settings-surface [data-ui-control="textarea"] {
+  font-size: var(--ui-font-body) !important;
+  line-height: var(--ui-line-body) !important;
+}
+
+.admin-settings-surface [data-ui-control] svg.lucide {
+  max-width: var(--ui-icon-md);
+  max-height: var(--ui-icon-md);
+}
+
+.dark .admin-settings-surface {
+  --admin-settings-bg: #080809;
+  --admin-settings-panel: #1b1c21;
+  --admin-settings-panel-raised: #1b1c21;
+  --admin-settings-panel-muted: #141416;
+  --admin-settings-panel-hover: #24262e;
+  --admin-settings-border: rgba(255, 255, 255, 0.055);
+  --admin-settings-border-soft: rgba(255, 255, 255, 0.075);
+  --admin-settings-text: rgb(244, 244, 245);
+  --admin-settings-muted-text: rgba(255, 255, 255, 0.58);
+  --admin-settings-faint-text: rgba(255, 255, 255, 0.38);
+  --admin-settings-control-bg: #1a1c22;
+  --admin-settings-control-hover: #24262e;
+  --admin-settings-popover-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+  --admin-settings-panel-shadow: 0 24px 52px rgba(0, 0, 0, 0.24);
+  --admin-settings-success-bg: rgb(var(--brand-accent-rgb) / 0.1);
+  --admin-settings-success-border: rgb(var(--brand-accent-rgb) / 0.24);
+  --admin-settings-success-text: var(--brand-accent);
+  --admin-settings-warning-bg: rgba(245, 158, 11, 0.11);
+  --admin-settings-warning-border: rgba(245, 158, 11, 0.22);
+  --admin-settings-warning-text: #f7c36a;
+  --admin-settings-danger-bg: rgba(248, 113, 113, 0.1);
+  --admin-settings-danger-border: rgba(248, 113, 113, 0.24);
+  --admin-settings-danger-text: #fca5a5;
+  --admin-settings-topbar-bg: rgba(5, 5, 6, 0.82);
+  --admin-settings-popover-bg: #17191f;
+  color-scheme: dark;
+  background-color: var(--admin-settings-bg);
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: min(1052px, 100vw);
+  height: 260px;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at 24% 0%, rgb(var(--brand-accent-rgb) / 0.11), transparent 48%),
+    radial-gradient(circle at 58% 8%, rgba(130, 116, 255, 0.08), transparent 42%);
+  filter: blur(52px);
+  opacity: 0.22;
+}
+
+.dark .admin-settings-surface::before {
+  background:
+    radial-gradient(circle at 24% 0%, rgb(var(--brand-accent-rgb) / 0.16), transparent 48%),
+    radial-gradient(circle at 58% 8%, rgba(170, 78, 132, 0.13), transparent 42%);
+  opacity: 0.7;
+}
+
+.admin-settings-page {
+  min-height: 100vh;
+  width: 100%;
+  padding: 28px 32px 48px;
+}
+
+@media (width >= 1024px) {
+  .admin-settings-shell .admin-settings-page {
+    width: 100%;
+    margin-left: 0;
+    padding: 28px 32px 48px;
+  }
+}
+
+@media (width < 1024px) {
+  .admin-settings-page {
+    padding: 24px;
+  }
+}
+
+@media (width < 640px) {
+  .admin-settings-page {
+    padding: 20px 16px 36px;
+  }
+}
+
+.admin-settings-container {
+  width: 100%;
+  max-width: 1680px;
+  margin-inline: auto;
+}
+
+.admin-settings-layout {
+  display: grid;
+  gap: 16px;
+  align-items: start;
+}
+
+.admin-settings-content {
+  min-width: 0;
+}
+
+@media (width >= 1100px) {
+  .admin-settings-layout {
+    grid-template-columns: minmax(228px, 252px) minmax(0, 1fr);
+  }
+
+  .admin-settings-layout .admin-settings-nav {
+    position: sticky;
+    top: 24px;
+    max-height: calc(100vh - 48px);
+    overflow: auto;
+  }
+}
+
+@media (width >= 1440px) {
+  .admin-settings-layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+  }
+}
+
+@media (width < 1100px) {
+  .admin-settings-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .admin-settings-layout .admin-settings-nav {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+.admin-settings-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 24px;
+  padding: 0 12px;
+  border: 1px solid rgb(var(--brand-accent-rgb) / 0.28);
+  border-radius: 999px;
+  background: rgb(var(--brand-accent-rgb) / 0.12);
+  color: var(--brand-accent-deep);
+  font-weight: 650;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+}
+
+.dark .admin-settings-eyebrow {
+  color: var(--brand-accent);
+  background: rgb(var(--brand-accent-rgb) / 0.1);
+}
+
+.admin-settings-eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--brand-accent);
+}
+
+.admin-settings-title {
+  color: var(--admin-settings-text);
+  font-weight: 650;
+  font-size: var(--ui-font-display);
+  line-height: var(--ui-line-display);
+  letter-spacing: 0;
+}
+
+.admin-settings-description {
+  max-width: 760px;
+  margin-top: 8px;
+  color: var(--admin-settings-muted-text);
+  font-size: var(--ui-font-body);
+  line-height: var(--ui-line-body);
+}
+
+.admin-settings-panel {
+  border: 1px solid var(--admin-settings-border);
+  border-radius: 12px;
+  background: var(--admin-settings-panel-raised);
+  box-shadow: var(--admin-settings-panel-shadow);
+  backdrop-filter: blur(18px);
+}
+
+.dark .admin-settings-panel {
+  background: var(--admin-settings-panel-raised);
+}
+
+.admin-settings-hero-panel {
+  min-height: 118px;
+  border-color: var(--admin-settings-border);
+  background: var(--admin-settings-panel-raised);
+}
+
+.dark .admin-settings-hero-panel {
+  border-color: rgba(255, 255, 255, 0.055);
+  background: #1b1c21;
+}
+
+.admin-settings-nav {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--admin-settings-panel-raised);
+}
+
+.admin-settings-nav-button {
+  border-radius: 8px;
+  font-weight: 650;
+  letter-spacing: 0;
+  color: var(--admin-settings-text);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.admin-settings-nav-button:hover {
+  transform: translateY(-1px);
+}
+
+.admin-settings-surface .admin-settings-nav-button[data-active="true"],
+.admin-settings-surface .admin-settings-nav-button[data-active="true"]:hover {
+  border-color: var(--brand-accent) !important;
+  background: var(--brand-accent) !important;
+  color: var(--brand-accent-foreground) !important;
+  box-shadow: none !important;
+}
+
+.admin-settings-subpanel {
+  border: 1px solid var(--admin-settings-border-soft);
+  border-radius: 8px;
+  background: var(--admin-settings-panel-muted);
+  box-shadow: none;
+}
+
+body:has(.admin-settings-surface) {
+  --background: hsl(210 20% 97%);
+  --foreground: hsl(224 24% 11%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(224 24% 11%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(224 24% 11%);
+  --muted: hsl(220 18% 95%);
+  --muted-foreground: hsl(219 11% 49%);
+  --secondary: hsl(220 18% 95%);
+  --secondary-foreground: hsl(224 24% 11%);
+  --accent: hsl(220 18% 95%);
+  --accent-foreground: hsl(224 24% 11%);
+  --border: hsl(218 24% 91%);
+  --input: hsl(218 24% 91%);
+  --admin-settings-border: rgba(15, 23, 42, 0.1);
+  --admin-settings-text: #171a22;
+}
+
+.dark body:has(.admin-settings-surface) {
+  --background: hsl(240 4% 3%);
+  --foreground: hsl(0 0% 96%);
+  --card: hsl(228 10% 12%);
+  --card-foreground: hsl(0 0% 96%);
+  --popover: hsl(225 12% 11%);
+  --popover-foreground: hsl(0 0% 96%);
+  --muted: hsl(228 9% 16%);
+  --muted-foreground: hsl(225 5% 62%);
+  --secondary: hsl(228 9% 16%);
+  --secondary-foreground: hsl(0 0% 96%);
+  --accent: hsl(228 9% 16%);
+  --accent-foreground: hsl(0 0% 96%);
+  --border: hsl(228 8% 18%);
+  --input: hsl(228 8% 18%);
+  --admin-settings-border: rgba(255, 255, 255, 0.1);
+  --admin-settings-text: rgb(244, 244, 245);
+}
+
+.admin-settings-surface .bg-card,
+.admin-settings-surface .bg-background,
+.admin-settings-surface .bg-white,
+.admin-settings-surface .bg-white\/56,
+.admin-settings-surface .bg-white\/70,
+.admin-settings-surface .bg-white\/72,
+.admin-settings-surface .bg-white\/78,
+.admin-settings-surface .bg-white\/80,
+.admin-settings-surface .bg-white\/88 {
+  background-color: var(--admin-settings-panel-raised);
+}
+
+.dark .admin-settings-surface .bg-card,
+.dark .admin-settings-surface .bg-background,
+.dark .admin-settings-surface .bg-white,
+.dark .admin-settings-surface .bg-white\/56,
+.dark .admin-settings-surface .bg-white\/70,
+.dark .admin-settings-surface .bg-white\/72,
+.dark .admin-settings-surface .bg-white\/78,
+.dark .admin-settings-surface .bg-white\/80,
+.dark .admin-settings-surface .bg-white\/88 {
+  background-color: var(--admin-settings-panel-raised);
+}
+
+.admin-settings-surface .bg-gradient-to-r,
+.admin-settings-surface .bg-gradient-to-br {
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 255, 255, 0.94),
+    rgb(var(--brand-accent-rgb) / 0.08)
+  ) !important;
+}
+
+.dark .admin-settings-surface .bg-gradient-to-r,
+.dark .admin-settings-surface .bg-gradient-to-br {
+  background-image: linear-gradient(
+    135deg,
+    rgba(23, 23, 27, 0.95),
+    rgba(23, 23, 27, 0.88),
+    rgb(var(--brand-accent-rgb) / 0.08)
+  ) !important;
+}
+
+.admin-settings-surface .bg-muted,
+.admin-settings-surface .bg-muted\/20,
+.admin-settings-surface .bg-muted\/30,
+.admin-settings-surface .bg-muted\/60,
+.admin-settings-surface .bg-secondary,
+.admin-settings-surface .bg-zinc-50,
+.admin-settings-surface .bg-zinc-50\/80,
+.admin-settings-surface .bg-slate-50,
+.admin-settings-surface .bg-gray-50,
+.admin-settings-surface .bg-zinc-100,
+.admin-settings-surface .bg-slate-100,
+.admin-settings-surface .bg-gray-100,
+.admin-settings-surface .bg-gray-200,
+.admin-settings-surface .bg-black\/\[0\.02\],
+.admin-settings-surface .bg-black\/\[0\.018\],
+.admin-settings-surface .bg-black\/\[0\.035\] {
+  background-color: var(--admin-settings-panel-muted);
+}
+
+.dark .admin-settings-surface .bg-muted,
+.dark .admin-settings-surface .bg-muted\/20,
+.dark .admin-settings-surface .bg-muted\/30,
+.dark .admin-settings-surface .bg-muted\/60,
+.dark .admin-settings-surface .bg-secondary,
+.dark .admin-settings-surface .bg-zinc-50,
+.dark .admin-settings-surface .bg-zinc-50\/80,
+.dark .admin-settings-surface .bg-slate-50,
+.dark .admin-settings-surface .bg-gray-50,
+.dark .admin-settings-surface .bg-zinc-100,
+.dark .admin-settings-surface .bg-slate-100,
+.dark .admin-settings-surface .bg-gray-100,
+.dark .admin-settings-surface .bg-gray-200,
+.dark .admin-settings-surface .bg-black\/\[0\.02\],
+.dark .admin-settings-surface .bg-black\/\[0\.018\],
+.dark .admin-settings-surface .bg-black\/\[0\.035\] {
+  background-color: var(--admin-settings-panel-muted);
+}
+
+.admin-settings-surface .bg-zinc-950,
+.admin-settings-surface .bg-zinc-900,
+.admin-settings-surface .bg-slate-950,
+.admin-settings-surface .bg-slate-900 {
+  background-color: #171a22;
+}
+
+.dark .admin-settings-surface .bg-zinc-950,
+.dark .admin-settings-surface .bg-zinc-900,
+.dark .admin-settings-surface .bg-slate-950,
+.dark .admin-settings-surface .bg-slate-900 {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.admin-settings-surface::selection {
+  background-color: rgb(var(--brand-accent-rgb) / 0.36);
+  color: #07090d;
+}
+
+.admin-settings-surface header.sticky {
+  border-bottom-color: var(--admin-settings-border);
+  background-color: var(--admin-settings-topbar-bg);
+  box-shadow: none;
+  backdrop-filter: blur(18px);
+}
+
+.dark .admin-settings-surface header.sticky {
+  border-bottom-color: var(--admin-settings-border);
+  background-color: var(--admin-settings-topbar-bg);
+}
+
+.admin-settings-surface header.sticky [class*="bg-brand-accent"] {
+  box-shadow: none;
+}
+
+.admin-settings-surface .text-muted-foreground {
+  color: var(--admin-settings-muted-text);
+}
+
+.dark .admin-settings-surface .text-muted-foreground {
+  color: var(--admin-settings-muted-text);
+}
+
+.admin-settings-surface .text-zinc-950,
+.admin-settings-surface .text-zinc-900,
+.admin-settings-surface .text-slate-900,
+.admin-settings-surface .text-gray-900,
+.admin-settings-surface .text-neutral-950,
+.admin-settings-surface .text-neutral-900 {
+  color: var(--admin-settings-text);
+}
+
+.dark .admin-settings-surface .text-zinc-950,
+.dark .admin-settings-surface .text-zinc-900,
+.dark .admin-settings-surface .text-slate-900,
+.dark .admin-settings-surface .text-gray-900,
+.dark .admin-settings-surface .text-neutral-950,
+.dark .admin-settings-surface .text-neutral-900 {
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface .text-zinc-700,
+.admin-settings-surface .text-zinc-600,
+.admin-settings-surface .text-slate-700,
+.admin-settings-surface .text-slate-600,
+.admin-settings-surface .text-gray-700,
+.admin-settings-surface .text-gray-600,
+.admin-settings-surface .text-neutral-700,
+.admin-settings-surface .text-neutral-600 {
+  color: #515866;
+}
+
+.dark .admin-settings-surface .text-zinc-700,
+.dark .admin-settings-surface .text-zinc-600,
+.dark .admin-settings-surface .text-slate-700,
+.dark .admin-settings-surface .text-slate-600,
+.dark .admin-settings-surface .text-gray-700,
+.dark .admin-settings-surface .text-gray-600,
+.dark .admin-settings-surface .text-neutral-700,
+.dark .admin-settings-surface .text-neutral-600 {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.admin-settings-surface .shadow-sm {
+  box-shadow: none;
+}
+
+.dark .admin-settings-surface .shadow-sm {
+  box-shadow: none;
+}
+
+.admin-settings-surface .shadow,
+.admin-settings-surface .shadow-md,
+.admin-settings-surface .shadow-lg,
+.admin-settings-surface .shadow-xl,
+.admin-settings-surface .shadow-2xl,
+.admin-settings-surface [class*="shadow-["] {
+  box-shadow: none;
+}
+
+.dark .admin-settings-surface .shadow,
+.dark .admin-settings-surface .shadow-md,
+.dark .admin-settings-surface .shadow-lg,
+.dark .admin-settings-surface .shadow-xl,
+.dark .admin-settings-surface .shadow-2xl,
+.dark .admin-settings-surface [class*="shadow-["] {
+  box-shadow: none;
+}
+
+.admin-settings-surface .border {
+  border-color: var(--admin-settings-border);
+}
+
+.dark .admin-settings-surface .border {
+  border-color: var(--admin-settings-border);
+}
+
+.admin-settings-surface .border-zinc-200\/80,
+.admin-settings-surface .border-zinc-200\/70,
+.admin-settings-surface .border-slate-200,
+.admin-settings-surface .border-gray-200 {
+  border-color: var(--admin-settings-border);
+}
+
+.dark .admin-settings-surface .border-zinc-200\/80,
+.dark .admin-settings-surface .border-zinc-200\/70,
+.dark .admin-settings-surface .border-slate-200,
+.dark .admin-settings-surface .border-gray-200 {
+  border-color: var(--admin-settings-border);
+}
+
+.admin-settings-surface .rounded-md.border,
+.admin-settings-surface .rounded-lg.border,
+.admin-settings-surface .rounded-xl.border,
+.admin-settings-surface .rounded-2xl.border {
+  border-color: var(--admin-settings-border-soft);
+  border-radius: 8px;
+}
+
+.dark .admin-settings-surface .rounded-md.border,
+.dark .admin-settings-surface .rounded-lg.border,
+.dark .admin-settings-surface .rounded-xl.border,
+.dark .admin-settings-surface .rounded-2xl.border {
+  border-color: var(--admin-settings-border-soft);
+}
+
+.admin-settings-surface [class*="rounded"].border.bg-card,
+.admin-settings-surface [class*="rounded"].border.bg-background,
+.admin-settings-surface [class*="rounded"].border.bg-white,
+.admin-settings-surface [class*="rounded"].border.bg-white\/56,
+.admin-settings-surface [class*="rounded"].border.bg-white\/70,
+.admin-settings-surface [class*="rounded"].border.bg-white\/72,
+.admin-settings-surface [class*="rounded"].border.bg-white\/78,
+.admin-settings-surface [class*="rounded"].border.bg-white\/80,
+.admin-settings-surface [class*="rounded"].border.bg-white\/88 {
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.admin-settings-surface .bg-card {
+  border-color: var(--admin-settings-border-soft);
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.dark .admin-settings-surface .bg-card {
+  border-color: var(--admin-settings-border-soft);
+}
+
+.admin-settings-surface .bg-card > .p-6:first-child {
+  padding: 16px 16px 10px;
+}
+
+.admin-settings-surface .bg-card > .p-6.pt-0 {
+  padding: 0 16px 16px;
+}
+
+.admin-settings-surface .bg-card .text-2xl.font-semibold.leading-none {
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.admin-settings-surface .bg-card .text-xl,
+.admin-settings-surface .bg-card .text-lg {
+  letter-spacing: 0;
+}
+
+.admin-settings-surface h1,
+.admin-settings-surface h2,
+.admin-settings-surface h3,
+.admin-settings-surface [class*="CardTitle"],
+.admin-settings-surface .font-semibold {
+  letter-spacing: 0;
+}
+
+.admin-settings-surface input,
+.admin-settings-surface textarea,
+.admin-settings-surface select,
+.admin-settings-surface [role="combobox"] {
+  border-color: var(--admin-settings-border);
+  background-color: var(--admin-settings-control-bg);
+  border-radius: 10px;
+  box-shadow: none;
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface input::placeholder,
+.admin-settings-surface textarea::placeholder {
+  color: var(--admin-settings-faint-text);
+}
+
+.dark .admin-settings-surface input,
+.dark .admin-settings-surface textarea,
+.dark .admin-settings-surface select,
+.dark .admin-settings-surface [role="combobox"] {
+  border-color: var(--admin-settings-border);
+  background-color: var(--admin-settings-control-bg);
+  color: var(--admin-settings-text);
+}
+
+.dark .admin-settings-surface select option {
+  background-color: var(--admin-settings-popover-bg);
+  color: var(--admin-settings-text);
+}
+
+.dark .admin-settings-surface input::placeholder,
+.dark .admin-settings-surface textarea::placeholder {
+  color: var(--admin-settings-faint-text);
+}
+
+.admin-settings-surface input:focus-visible,
+.admin-settings-surface textarea:focus-visible,
+.admin-settings-surface select:focus-visible,
+.admin-settings-surface [role="combobox"]:focus-visible {
+  border-color: rgb(var(--brand-accent-rgb) / 0.72);
+  box-shadow: 0 0 0 3px rgb(var(--brand-accent-rgb) / 0.16);
+}
+
+.admin-settings-surface button.bg-primary,
+.admin-settings-surface .bg-primary {
+  background-color: var(--brand-accent);
+  color: var(--brand-accent-foreground);
+}
+
+.admin-settings-surface button.bg-primary:hover,
+.admin-settings-surface .hover\:bg-primary\/90:hover {
+  background-color: var(--brand-accent-hover);
+  color: var(--brand-accent-foreground);
+}
+
+.admin-settings-surface button.border-input,
+.admin-settings-surface button.border-black\/10,
+.admin-settings-surface a.border-input,
+.admin-settings-surface a.border-black\/10 {
+  border-color: var(--admin-settings-border);
+  background-color: transparent;
+  color: var(--admin-settings-text);
+  box-shadow: none;
+}
+
+.dark .admin-settings-surface button.border-input,
+.dark .admin-settings-surface button.border-black\/10,
+.dark .admin-settings-surface a.border-input,
+.dark .admin-settings-surface a.border-black\/10 {
+  border-color: var(--admin-settings-border);
+  background-color: #1a1c22;
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface button.border-input:hover,
+.admin-settings-surface button.border-black\/10:hover,
+.admin-settings-surface a.border-input:hover,
+.admin-settings-surface a.border-black\/10:hover {
+  border-color: rgba(15, 23, 42, 0.14);
+  background-color: var(--admin-settings-control-hover);
+  color: var(--admin-settings-text);
+}
+
+.dark .admin-settings-surface button.border-input:hover,
+.dark .admin-settings-surface button.border-black\/10:hover,
+.dark .admin-settings-surface a.border-input:hover,
+.dark .admin-settings-surface a.border-black\/10:hover {
+  border-color: rgb(var(--brand-accent-rgb) / 0.36);
+  background-color: var(--admin-settings-panel-hover);
+  color: var(--admin-settings-text);
+}
+
+.admin-settings-surface [role="tab"][data-state="active"] {
+  background-color: var(--brand-accent);
+  color: var(--brand-accent-foreground);
+  box-shadow: none;
+}
+
+.admin-settings-surface [role="tablist"] {
+  height: auto;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--admin-settings-border);
+  border-radius: 12px;
+  background-color: var(--admin-settings-panel-muted);
+  box-shadow: none;
+}
+
+.admin-settings-surface [role="tab"] {
+  min-height: 34px;
+  border-radius: 8px;
+  color: var(--admin-settings-muted-text);
+  font-size: 13px;
+  font-weight: 620;
+  letter-spacing: 0;
+}
+
+.admin-settings-surface [role="tab"]:hover {
+  color: var(--admin-settings-text);
+  background-color: var(--admin-settings-panel-hover);
+}
+
+.admin-settings-surface .admin-settings-nav-button:focus-visible,
+.admin-settings-surface button:focus-visible,
+.admin-settings-surface a:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(var(--brand-accent-rgb) / 0.22);
+}
+
+.admin-settings-surface [role="switch"][data-state="checked"] {
+  border-color: rgb(var(--brand-accent-rgb) / 0.75);
+  background-color: var(--brand-accent);
+  box-shadow: none;
+}
+
+.admin-settings-surface [role="switch"][data-state="checked"] > span {
+  border-color: rgb(7 9 13 / 0.08);
+  background-color: #07090d;
+}
+
+.admin-settings-surface div.bg-primary {
+  border-color: rgb(var(--brand-accent-rgb) / 0.2);
+  background-color: rgb(var(--brand-accent-rgb) / 0.2);
+  color: var(--brand-accent-deep);
+}
+
+.dark .admin-settings-surface div.bg-primary {
+  border-color: rgb(var(--brand-accent-rgb) / 0.26);
+  background-color: rgb(var(--brand-accent-rgb) / 0.16);
+  color: var(--brand-accent);
+}
+
+.admin-settings-surface .bg-secondary {
+  color: var(--admin-settings-muted-text);
+}
+
+.admin-settings-surface .admin-settings-panel .bg-secondary,
+.admin-settings-surface .admin-settings-panel [data-slot="badge"] {
+  border-color: var(--admin-settings-border);
+  background-color: var(--admin-settings-panel-muted);
+  color: var(--admin-settings-muted-text);
+}
+
+.admin-settings-surface .admin-settings-panel [data-slot="badge"].bg-brand-accent,
+.admin-settings-surface .admin-settings-panel [data-active="true"] [data-slot="badge"] {
+  border-color: rgb(var(--brand-accent-rgb) / 0.32);
+  background-color: rgb(var(--brand-accent-rgb) / 0.18);
+  color: var(--brand-accent-deep);
+}
+
+.dark .admin-settings-surface .admin-settings-panel [data-slot="badge"].bg-brand-accent,
+.dark .admin-settings-surface .admin-settings-panel [data-active="true"] [data-slot="badge"] {
+  color: var(--brand-accent);
+}
+
+.admin-settings-surface [role="tab"][data-state="inactive"] {
+  color: #6f7785;
+}
+
+.dark .admin-settings-surface [role="tab"][data-state="inactive"] {
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.admin-settings-surface table thead,
+.admin-settings-surface .bg-zinc-50,
+.admin-settings-surface .bg-slate-50,
+.admin-settings-surface .bg-gray-50 {
+  background-color: var(--admin-settings-panel-muted);
+}
+
+.dark .admin-settings-surface table thead,
+.dark .admin-settings-surface .bg-zinc-50,
+.dark .admin-settings-surface .bg-slate-50,
+.dark .admin-settings-surface .bg-gray-50 {
+  background-color: var(--admin-settings-panel-muted);
+}
+
+.admin-settings-surface table {
+  color: inherit;
+}
+
+.admin-settings-surface tbody tr:hover {
+  background-color: rgb(var(--brand-accent-rgb) / 0.07);
+}
+
+.dark .admin-settings-surface tbody tr:hover {
+  background-color: rgb(var(--brand-accent-rgb) / 0.055);
+}
+
+.admin-settings-surface .bg-blue-50,
+.admin-settings-surface .bg-sky-50,
+.admin-settings-surface .bg-cyan-50,
+.admin-settings-surface .bg-teal-50,
+.admin-settings-surface .bg-green-50,
+.admin-settings-surface .bg-emerald-50,
+.admin-settings-surface .bg-lime-50,
+.admin-settings-surface .bg-indigo-50,
+.admin-settings-surface .bg-violet-50,
+.admin-settings-surface .bg-fuchsia-50,
+.admin-settings-surface .bg-purple-50 {
+  background-color: var(--admin-settings-success-bg);
+  color: var(--admin-settings-success-text);
+}
+
+.dark .admin-settings-surface .bg-blue-50,
+.dark .admin-settings-surface .bg-sky-50,
+.dark .admin-settings-surface .bg-cyan-50,
+.dark .admin-settings-surface .bg-teal-50,
+.dark .admin-settings-surface .bg-green-50,
+.dark .admin-settings-surface .bg-emerald-50,
+.dark .admin-settings-surface .bg-lime-50,
+.dark .admin-settings-surface .bg-indigo-50,
+.dark .admin-settings-surface .bg-violet-50,
+.dark .admin-settings-surface .bg-fuchsia-50,
+.dark .admin-settings-surface .bg-purple-50 {
+  background-color: var(--admin-settings-success-bg);
+  color: var(--admin-settings-success-text);
+}
+
+.admin-settings-surface .bg-blue-100,
+.admin-settings-surface .bg-sky-100,
+.admin-settings-surface .bg-cyan-100,
+.admin-settings-surface .bg-teal-100,
+.admin-settings-surface .bg-green-100,
+.admin-settings-surface .bg-emerald-100,
+.admin-settings-surface .bg-lime-100,
+.admin-settings-surface .bg-indigo-100,
+.admin-settings-surface .bg-violet-100,
+.admin-settings-surface .bg-fuchsia-100,
+.admin-settings-surface .bg-purple-100 {
+  background-color: var(--admin-settings-success-bg);
+  color: var(--admin-settings-success-text);
+}
+
+.dark .admin-settings-surface .bg-blue-100,
+.dark .admin-settings-surface .bg-sky-100,
+.dark .admin-settings-surface .bg-cyan-100,
+.dark .admin-settings-surface .bg-teal-100,
+.dark .admin-settings-surface .bg-green-100,
+.dark .admin-settings-surface .bg-emerald-100,
+.dark .admin-settings-surface .bg-lime-100,
+.dark .admin-settings-surface .bg-indigo-100,
+.dark .admin-settings-surface .bg-violet-100,
+.dark .admin-settings-surface .bg-fuchsia-100,
+.dark .admin-settings-surface .bg-purple-100 {
+  background-color: var(--admin-settings-success-bg);
+  color: var(--admin-settings-success-text);
+}
+
+.admin-settings-surface .bg-sky-500\/5,
+.admin-settings-surface .bg-sky-500\/10,
+.admin-settings-surface .bg-emerald-500\/5,
+.admin-settings-surface .bg-emerald-500\/10,
+.admin-settings-surface .bg-violet-500\/10,
+.admin-settings-surface .bg-indigo-500\/10,
+.admin-settings-surface .bg-orange-500\/10,
+.admin-settings-surface .bg-lime-500\/10 {
+  background-color: var(--admin-settings-success-bg);
+}
+
+.dark .admin-settings-surface .bg-sky-500\/5,
+.dark .admin-settings-surface .bg-sky-500\/10,
+.dark .admin-settings-surface .bg-emerald-500\/5,
+.dark .admin-settings-surface .bg-emerald-500\/10,
+.dark .admin-settings-surface .bg-violet-500\/10,
+.dark .admin-settings-surface .bg-indigo-500\/10,
+.dark .admin-settings-surface .bg-orange-500\/10,
+.dark .admin-settings-surface .bg-lime-500\/10 {
+  background-color: var(--admin-settings-success-bg);
+}
+
+.admin-settings-surface .hover\:bg-sky-500\/20:hover,
+.admin-settings-surface .hover\:bg-emerald-500\/20:hover,
+.admin-settings-surface .hover\:bg-orange-500\/20:hover {
+  background-color: rgb(var(--brand-accent-rgb) / 0.18);
+}
+
+.admin-settings-surface .border-blue-100,
+.admin-settings-surface .border-blue-200,
+.admin-settings-surface .border-sky-200,
+.admin-settings-surface .border-cyan-200,
+.admin-settings-surface .border-teal-200,
+.admin-settings-surface .border-green-200,
+.admin-settings-surface .border-emerald-200,
+.admin-settings-surface .border-lime-200,
+.admin-settings-surface .border-indigo-200,
+.admin-settings-surface .border-violet-200,
+.admin-settings-surface .border-fuchsia-200,
+.admin-settings-surface .border-purple-200,
+.admin-settings-surface .border-emerald-500\/20,
+.admin-settings-surface .border-emerald-500\/50,
+.admin-settings-surface .border-emerald-500,
+.admin-settings-surface .border-sky-500\/50,
+.admin-settings-surface .border-sky-500\/20,
+.admin-settings-surface .border-orange-200,
+.admin-settings-surface .border-orange-300\/50,
+.admin-settings-surface .border-orange-300\/40,
+.admin-settings-surface .border-orange-400,
+.admin-settings-surface .border-orange-400\/50 {
+  border-color: var(--admin-settings-success-border);
+}
+
+.dark .admin-settings-surface .border-blue-100,
+.dark .admin-settings-surface .border-blue-200,
+.dark .admin-settings-surface .border-sky-200,
+.dark .admin-settings-surface .border-cyan-200,
+.dark .admin-settings-surface .border-teal-200,
+.dark .admin-settings-surface .border-green-200,
+.dark .admin-settings-surface .border-emerald-200,
+.dark .admin-settings-surface .border-lime-200,
+.dark .admin-settings-surface .border-indigo-200,
+.dark .admin-settings-surface .border-violet-200,
+.dark .admin-settings-surface .border-fuchsia-200,
+.dark .admin-settings-surface .border-purple-200,
+.dark .admin-settings-surface .border-emerald-500\/20,
+.dark .admin-settings-surface .border-emerald-500\/50,
+.dark .admin-settings-surface .border-emerald-500,
+.dark .admin-settings-surface .border-sky-500\/50,
+.dark .admin-settings-surface .border-sky-500\/20,
+.dark .admin-settings-surface .border-orange-200,
+.dark .admin-settings-surface .border-orange-300\/50,
+.dark .admin-settings-surface .border-orange-300\/40,
+.dark .admin-settings-surface .border-orange-400,
+.dark .admin-settings-surface .border-orange-400\/50 {
+  border-color: var(--admin-settings-success-border);
+}
+
+.admin-settings-surface .text-blue-600,
+.admin-settings-surface .text-blue-700,
+.admin-settings-surface .text-blue-800,
+.admin-settings-surface .text-blue-900,
+.admin-settings-surface .text-teal-600,
+.admin-settings-surface .text-teal-700,
+.admin-settings-surface .text-teal-800,
+.admin-settings-surface .text-teal-900,
+.admin-settings-surface .text-cyan-700,
+.admin-settings-surface .text-cyan-800,
+.admin-settings-surface .text-cyan-900,
+.admin-settings-surface .text-sky-700,
+.admin-settings-surface .text-sky-800,
+.admin-settings-surface .text-sky-900,
+.admin-settings-surface .text-green-700,
+.admin-settings-surface .text-green-800,
+.admin-settings-surface .text-green-900,
+.admin-settings-surface .text-indigo-600,
+.admin-settings-surface .text-indigo-700,
+.admin-settings-surface .text-indigo-800,
+.admin-settings-surface .text-indigo-900,
+.admin-settings-surface .text-violet-600,
+.admin-settings-surface .text-violet-700,
+.admin-settings-surface .text-violet-800,
+.admin-settings-surface .text-violet-900,
+.admin-settings-surface .text-fuchsia-600,
+.admin-settings-surface .text-fuchsia-700,
+.admin-settings-surface .text-fuchsia-800,
+.admin-settings-surface .text-fuchsia-900,
+.admin-settings-surface .text-purple-700,
+.admin-settings-surface .text-purple-800,
+.admin-settings-surface .text-purple-900,
+.admin-settings-surface .text-cyan-600,
+.admin-settings-surface .text-sky-600,
+.admin-settings-surface .text-emerald-600,
+.admin-settings-surface .text-emerald-700,
+.admin-settings-surface .text-emerald-800,
+.admin-settings-surface .text-emerald-900,
+.admin-settings-surface .text-lime-600,
+.admin-settings-surface .text-lime-700,
+.admin-settings-surface .text-orange-600,
+.admin-settings-surface .text-orange-700,
+.admin-settings-surface .text-orange-800,
+.admin-settings-surface .text-orange-900 {
+  color: var(--admin-settings-success-text);
+}
+
+.dark .admin-settings-surface .text-blue-400,
+.dark .admin-settings-surface .text-blue-500,
+.dark .admin-settings-surface .text-blue-600,
+.dark .admin-settings-surface .text-teal-400,
+.dark .admin-settings-surface .text-teal-500,
+.dark .admin-settings-surface .text-teal-600,
+.dark .admin-settings-surface .text-cyan-400,
+.dark .admin-settings-surface .text-cyan-500,
+.dark .admin-settings-surface .text-cyan-600,
+.dark .admin-settings-surface .text-sky-400,
+.dark .admin-settings-surface .text-sky-500,
+.dark .admin-settings-surface .text-sky-600,
+.dark .admin-settings-surface .text-emerald-400,
+.dark .admin-settings-surface .text-emerald-500,
+.dark .admin-settings-surface .text-emerald-600,
+.dark .admin-settings-surface .text-indigo-400,
+.dark .admin-settings-surface .text-indigo-500,
+.dark .admin-settings-surface .text-indigo-600,
+.dark .admin-settings-surface .text-violet-400,
+.dark .admin-settings-surface .text-violet-500,
+.dark .admin-settings-surface .text-violet-600,
+.dark .admin-settings-surface .text-fuchsia-400,
+.dark .admin-settings-surface .text-fuchsia-500,
+.dark .admin-settings-surface .text-fuchsia-600,
+.dark .admin-settings-surface .text-lime-400,
+.dark .admin-settings-surface .text-lime-500,
+.dark .admin-settings-surface .text-lime-600,
+.dark .admin-settings-surface .text-lime-700,
+.dark .admin-settings-surface .text-green-700,
+.dark .admin-settings-surface .text-green-800,
+.dark .admin-settings-surface .text-green-900,
+.dark .admin-settings-surface .text-purple-700,
+.dark .admin-settings-surface .text-purple-800,
+.dark .admin-settings-surface .text-purple-900,
+.dark .admin-settings-surface .text-orange-400,
+.dark .admin-settings-surface .text-orange-500,
+.dark .admin-settings-surface .text-orange-600,
+.dark .admin-settings-surface .text-orange-700 {
+  color: var(--admin-settings-success-text);
+}
+
+.admin-settings-surface .bg-amber-50,
+.admin-settings-surface .bg-amber-100,
+.admin-settings-surface .bg-yellow-50,
+.admin-settings-surface .bg-yellow-100,
+.admin-settings-surface .bg-amber-300\/10,
+.admin-settings-surface .bg-amber-500\/5,
+.admin-settings-surface .bg-amber-500\/10,
+.admin-settings-surface .bg-yellow-500\/10 {
+  background-color: var(--admin-settings-warning-bg);
+  color: var(--admin-settings-warning-text);
+}
+
+.dark .admin-settings-surface .bg-amber-50,
+.dark .admin-settings-surface .bg-amber-100,
+.dark .admin-settings-surface .bg-yellow-50,
+.dark .admin-settings-surface .bg-yellow-100,
+.dark .admin-settings-surface .bg-amber-300\/10,
+.dark .admin-settings-surface .bg-amber-500\/5,
+.dark .admin-settings-surface .bg-amber-500\/10,
+.dark .admin-settings-surface .bg-yellow-500\/10 {
+  background-color: var(--admin-settings-warning-bg);
+  color: var(--admin-settings-warning-text);
+}
+
+.admin-settings-surface .border-amber-200,
+.admin-settings-surface .border-amber-300\/25,
+.admin-settings-surface .border-amber-300\/30,
+.admin-settings-surface .border-amber-300\/40,
+.admin-settings-surface .border-amber-300\/60,
+.admin-settings-surface .border-amber-300\/70,
+.admin-settings-surface .border-amber-500\/50,
+.admin-settings-surface .border-yellow-200 {
+  border-color: var(--admin-settings-warning-border);
+}
+
+.admin-settings-surface .text-amber-100,
+.admin-settings-surface .text-amber-200,
+.admin-settings-surface .text-amber-600,
+.admin-settings-surface .text-amber-700,
+.admin-settings-surface .text-amber-800,
+.admin-settings-surface .text-amber-900,
+.admin-settings-surface .text-yellow-600,
+.admin-settings-surface .text-yellow-700,
+.admin-settings-surface .text-yellow-800,
+.admin-settings-surface .text-yellow-900 {
+  color: var(--admin-settings-warning-text);
+}
+
+.admin-settings-surface .bg-red-50,
+.admin-settings-surface .bg-red-100,
+.admin-settings-surface .bg-red-500\/10,
+.admin-settings-surface .bg-rose-50,
+.admin-settings-surface .bg-rose-100,
+.admin-settings-surface .bg-rose-500\/10 {
+  background-color: var(--admin-settings-danger-bg);
+  color: var(--admin-settings-danger-text);
+}
+
+.dark .admin-settings-surface .bg-red-50,
+.dark .admin-settings-surface .bg-red-100,
+.dark .admin-settings-surface .bg-red-500\/10,
+.dark .admin-settings-surface .bg-rose-50,
+.dark .admin-settings-surface .bg-rose-100,
+.dark .admin-settings-surface .bg-rose-500\/10 {
+  background-color: var(--admin-settings-danger-bg);
+  color: var(--admin-settings-danger-text);
+}
+
+.admin-settings-surface .border-red-200,
+.admin-settings-surface .border-red-500\/20,
+.admin-settings-surface .border-rose-200,
+.admin-settings-surface .border-rose-500\/20 {
+  border-color: var(--admin-settings-danger-border);
+}
+
+.admin-settings-surface .text-red-300,
+.admin-settings-surface .text-red-400,
+.admin-settings-surface .text-red-500,
+.admin-settings-surface .text-red-600,
+.admin-settings-surface .text-red-700,
+.admin-settings-surface .text-red-800,
+.admin-settings-surface .text-red-900,
+.admin-settings-surface .text-rose-300,
+.admin-settings-surface .text-rose-400,
+.admin-settings-surface .text-rose-500,
+.admin-settings-surface .text-rose-600,
+.admin-settings-surface .text-rose-700,
+.admin-settings-surface .text-rose-800,
+.admin-settings-surface .text-rose-900 {
+  color: var(--admin-settings-danger-text);
+}
+
+.admin-settings-surface .from-yellow-400,
+.admin-settings-surface .from-lime-300,
+.admin-settings-surface .from-lime-400,
+.admin-settings-surface .from-lime-500,
+.admin-settings-surface .from-emerald-500,
+.admin-settings-surface .from-orange-600 {
+  --tw-gradient-from: var(--brand-accent) var(--tw-gradient-from-position) !important;
+  --tw-gradient-to: rgb(var(--brand-accent-rgb) / 0) var(--tw-gradient-to-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+.admin-settings-surface .to-orange-500,
+.admin-settings-surface .to-orange-600,
+.admin-settings-surface .to-lime-400,
+.admin-settings-surface .to-sky-500,
+.admin-settings-surface .to-rose-600 {
+  --tw-gradient-to: var(--brand-accent-hover) var(--tw-gradient-to-position) !important;
+}
+
+.admin-settings-surface .via-emerald-500\/5,
+.admin-settings-surface .via-lime-300\/10 {
+  --tw-gradient-via: rgb(var(--brand-accent-rgb) / 0.08) var(--tw-gradient-via-position) !important;
+}
+
+body:has(.admin-settings-surface) [role="dialog"],
+body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [role="listbox"],
+body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [role="menu"],
+body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [data-radix-popper-content],
+body:has(.admin-settings-surface) [data-radix-popover-content] {
+  border-color: var(--admin-settings-border) !important;
+  background-color: var(--admin-settings-popover-bg) !important;
+  color: var(--admin-settings-text) !important;
+  box-shadow: var(--admin-settings-popover-shadow) !important;
+}
+
+.dark body:has(.admin-settings-surface) [role="dialog"],
+.dark body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [role="listbox"],
+.dark body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [role="menu"],
+.dark body:has(.admin-settings-surface) [data-radix-popper-content-wrapper] [data-radix-popper-content],
+.dark body:has(.admin-settings-surface) [data-radix-popover-content] {
+  border-color: var(--admin-settings-border) !important;
+  background-color: var(--admin-settings-popover-bg) !important;
+  color: var(--admin-settings-text) !important;
+  box-shadow: var(--admin-settings-popover-shadow) !important;
+}
+
+body:has(.admin-settings-surface) [role="option"]:focus,
+body:has(.admin-settings-surface) [role="option"][data-highlighted] {
+  background-color: rgb(var(--brand-accent-rgb) / 0.16);
+  color: #07090d;
+}
+
+.dark body:has(.admin-settings-surface) [role="option"]:focus,
+.dark body:has(.admin-settings-surface) [role="option"][data-highlighted] {
+  background-color: rgb(var(--brand-accent-rgb) / 0.14);
+  color: var(--brand-accent);
+}
