@@ -2,11 +2,37 @@
 
 [![Frontend checks](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml/badge.svg)](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml)
 
+[在线演示](https://ai.vip98k.com/demo-home) · [项目官网](https://ai.vip98k.com/) · [App 界面预览](#app-界面预览)
+
 **FrameLoom（帧织）** 是面向图片、视频和节点工作流的 AI 设计工作台。项目名结合 Frame（画面）与 Loom（织造），表达将素材和创作流程编排为作品。
 
 从现有 App 中提取的独立前端源码，基于 React、TypeScript、Vite 和 Tailwind CSS。包含登录界面、设计工作台、图片/视频画布、节点编辑、生成任务面板、团队界面，以及可选的桌面桥接客户端。
 
 **本仓库是前端，不包含可独立提供 AI 服务的后端。** 登录、上传、生成、团队权限、计费和项目保存需要自行实现或接入兼容 API。未配置后端时，启动后显示连接设置页，不会默认连接原项目的商业服务。
+
+## App 界面预览
+
+以下截图来自实际运行的桌面 App，拍摄于 2026-09-16，展示首页、画布工作台与生成参数面板。官网、在线演示和当前桌面发行版仍使用 **Astra Canvas** 名称；**FrameLoom · 帧织** 是本仓库独立开源前端的名称。线上服务及桌面发行版的功能、素材和后端配置可能与本仓库不同。
+
+### App 首页
+
+创意输入、Agent 模式、快速开始与最近项目。
+
+![App 首页：创意输入、快速开始与最近项目](docs/screenshots/app-home.jpg)
+
+### 画布工作台
+
+无限画布、选择与平移工具、Agent 对话及快捷创作入口。
+
+![App 画布工作台与 Agent 对话面板](docs/screenshots/app-canvas.jpg)
+
+### 画布生成参数
+
+在画布中设置图片质量、尺寸比例和生成数量。
+
+![App 画布中的图片生成参数面板](docs/screenshots/app-canvas-parameters.jpg)
+
+截图仅作界面展示，图中第三方素材和品牌的权利归原权利人；原始素材未作为 App 资源打包，详见 [第三方说明](THIRD_PARTY_NOTICES.md)。在线演示首页可以直接浏览，生成、资产和画布操作需要登录并受线上服务权限约束。
 
 ## 快速开始
 
@@ -75,7 +101,7 @@ public/            自绘占位图、中性图标和本地帮助页
 | 团队管理 | 用户可见界面 | 服务端角色权限校验 |
 | 本地归档、自动更新 | 桥接调用接口 | Electron/Tauri 壳实现 |
 
-前端构建不代表上述后端业务已经实现。演示照片、第三方视频/音频样例和原品牌图案未随源码发布；已用自绘 SVG 占位图替换。音视频演示 URL 留空，需要自行配置具有使用权的素材。
+前端构建不代表上述后端业务已经实现。App 运行资源中的演示照片、第三方视频/音频样例和原品牌图案已用自绘 SVG 占位图替换或留空；文档截图保留实际界面供预览。音视频演示 URL 留空，需要自行配置具有使用权的素材。
 
 ## 文档
 
