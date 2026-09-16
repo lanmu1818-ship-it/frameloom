@@ -1,14 +1,22 @@
+<p align="center">
+  <img src="docs/assets/app-icon.png" alt="FrameLoom app icon" width="128" height="128" />
+</p>
+
 # FrameLoom
 
 [![Frontend checks](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml/badge.svg)](https://github.com/lanmu1818-ship-it/frameloom/actions/workflows/ci.yml)
 
-[Live Demo](https://ai.vip98k.com/demo-home) · [Website](https://ai.vip98k.com/) · [App Preview](#app-preview)
+[Live Demo](https://ai.vip98k.com/demo-home) · [Website](https://ai.vip98k.com/) · [Model API Portal](https://api.vip98k.com/) · [App Preview](#app-preview)
 
 **FrameLoom** is an open-source AI design workspace frontend for image and video canvases and node-based workflows. Its name combines *Frame* and *Loom*: weaving creative assets and workflows into finished work.
 
 Built with **React, TypeScript, Vite, and Tailwind CSS**, this standalone frontend was extracted from an existing desktop app. It includes authentication screens, a creative workspace, image and video canvases, node editing, generation task panels, team interfaces, and an optional desktop bridge client.
 
 **A compatible backend is required.** This repository contains the frontend; authentication, uploads, AI generation, team permissions, billing, and project storage must be provided by your own backend or a compatible API. Without a configured backend, the app opens a connection setup screen. It does not connect to the original commercial service by default.
+
+## Model API Portal
+
+Visit the [Model API Portal](https://api.vip98k.com/) to explore the hosted model API service. This is an external service; access and usage are subject to its account permissions and terms. The frontend still requires a compatible application backend as described in [Backend Integration](docs/backend-integration.md).
 
 ## App Preview
 
